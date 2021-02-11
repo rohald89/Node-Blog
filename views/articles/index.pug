@@ -1,0 +1,26 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css", integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z", crossorigin="anonymous")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title 100 Days of Code
+    body 
+        .container-sm
+            h1.mb-4 Blog Articles 
+            a.btn.btn-success(href="/articles/new") New Article
+
+            each article in articles
+                .card.mt-4 
+                    .card-body
+                        h4.card-title= article.title
+                        p.card-subtitle.text-muted.mb-2= article.createdAt.toLocaleDateString()
+                        p.card-text.mb-2= article.description
+
+                        a.btn.btn-primary.me-3(href=`articles/${article.slug}`) Read More
+                        a.btn.btn-info.me-3(href=`articles//edit/${article.id}`) Edit
+                        form(action=`/articles/${article.id}?_method=DELETE` method="POST").d-inline.me-3
+                            button(type="submit").btn.btn-danger Delete
+
+        
