@@ -4,6 +4,7 @@ const marked = require('marked');
 const slugify = require('slugify');
 const createDomPurify = require('dompurify');
 const { JSDOM } = require('jsdom');
+const { sanitize } = require('dompurify');
 const dompurify = createDomPurify(new JSDOM().window);
 
 module.exports = (sequelize) => {
@@ -48,10 +49,10 @@ module.exports = (sequelize) => {
                     strict: true
                 });
             }
-            if(article.markdown) {
+            if(article.markdown){
                 article.sanitizedHTML = dompurify.sanitize(marked(article.markdown));
             }
-        }
+        }, 
     }, sequelize } );
 
     return Article;
