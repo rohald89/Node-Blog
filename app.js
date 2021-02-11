@@ -5,6 +5,9 @@ const Article = require('./models').Article;
 const methodOverride = require('method-override');
 const app = express();
 
+
+const port = process.env.PORT || 3000;
+
 app.set('view engine', 'pug');
 
 app.use(express.json());
@@ -19,5 +22,7 @@ app.get('/', async (req, res) => {
 });
 
 sequelize.sync().then(() => {
-    app.listen(3000);
+    app.listen(port, () => {  
+        console.log(`Server is up on port: ${port} `)
+    });
 });
