@@ -11,7 +11,7 @@ html(lang="en")
             h1.mb-1= article.title
             .text-muted.mb-2= article.createdAt.toLocaleDateString()
             a.btn.btn-secondary(href="/") All Articles
-            a.btn.btn-info(href=`/articles/edit/${article.id}`) Edit
-
+            a.btn.btn-info(href='/') Edit
+            //- href=`/articles/edit/${article.id}`
             div !{article.sanitizedHTML}
         
